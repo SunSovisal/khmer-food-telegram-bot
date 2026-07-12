@@ -122,8 +122,8 @@ class KhmerFoodBot:
             summary = ""
         return (
             "👩‍🍳 <b>ថ្ងៃនេះធ្វើម្ហូបអ្វី?</b>\n\n"
-            "សូមជ្រើសរើសបន្លែដែលមាននៅផ្ទះ។ អាចជ្រើសបានច្រើនមុខ "
-            "ហើយចុច «រួចហើយ»។"
+            "<b>សូមជ្រើសរើសបន្លែដែលមាននៅផ្ទះ។</b>\n\n"
+            "<b>អាចជ្រើសបានច្រើនមុខ រួចចុច «រួចហើយ»។</b>"
             + summary
         )
 
@@ -149,8 +149,9 @@ class KhmerFoodBot:
             chat_id=chat_id,
             message_id=message_id,
             text=(
-                f"🥬 បន្លែ៖ <b>{html.escape(selected)}</b>\n\n"
-                "ឥឡូវសូមជ្រើសរើសសាច់ ឬគ្រឿងប្រូតេអ៊ីនមួយមុខ៖"
+                f"🥬 <b>បន្លែ៖ {html.escape(selected)}</b>\n\n"
+                "🍖 <b>ឥឡូវសូមជ្រើសរើសសាច់ "
+                "ឬគ្រឿងប្រូតេអ៊ីនមួយមុខ៖</b>"
             ),
             parse_mode="HTML",
             reply_markup=self.meat_keyboard(session.vegetables),
@@ -178,17 +179,20 @@ class KhmerFoodBot:
         chosen_veg = "، ".join(veg_labels) or "មិនបានជ្រើសបន្លែ"
         lines = [
             "🍲 <b>មុខម្ហូបដែលអាចធ្វើថ្ងៃនេះ</b>",
-            f"🥬 បន្លែ៖ {html.escape(chosen_veg)}",
-            f"🍗 សាច់៖ {html.escape(MEATS[session.meat or 'none'])}",
+            "",
+            f"🥬 <b>បន្លែ៖ {html.escape(chosen_veg)}</b>",
+            f"🍗 <b>សាច់៖ {html.escape(MEATS[session.meat or 'none'])}</b>",
             "",
         ]
+        number_icons = ("1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣")
         for index, dish in enumerate(dishes, 1):
             matches = matching_vegetables(dish, session.vegetables)
             match_text = "، ".join(VEGETABLES[key] for key in VEGETABLES if key in matches)
             why = f" — ប្រើ {html.escape(match_text)}" if match_text else ""
-            lines.append(f"{index}. <b>{html.escape(dish.name_km)}</b>{why}")
-            lines.append(f"   <i>{html.escape(dish.note_km)}</i>")
-        lines.append("\nចុចលើឈ្មោះម្ហូប ដើម្បីមើលព័ត៌មានបន្ថែម។")
+            lines.append(f"{number_icons[index - 1]} <b>{html.escape(dish.name_km)}</b>{why}")
+            lines.append(html.escape(dish.note_km))
+            lines.append("")
+        lines.append("👉 <b>ចុចលើឈ្មោះម្ហូប ដើម្បីមើលព័ត៌មានបន្ថែម។</b>")
         return "\n".join(lines)
 
     def show_results(self, chat_id: int, message_id: int, session: Session) -> None:
@@ -219,9 +223,9 @@ class KhmerFoodBot:
             text=(
                 f"🍽 <b>{html.escape(dish.name_km)}</b>\n"
                 "\n"
-                f"ប្រភេទ៖ {html.escape(dish.category_km)}\n"
-                f"បន្លែដែលគេនិយមប្រើ៖ {html.escape(ingredients)}\n\n"
-                f"{html.escape(dish.note_km)}\n\n"
+                f"🔥 <b>ប្រភេទ៖ {html.escape(dish.category_km)}</b>\n\n"
+                f"🥬 <b>បន្លែដែលគេនិយមប្រើ៖</b>\n{html.escape(ingredients)}\n\n"
+                f"📝 <b>{html.escape(dish.note_km)}</b>\n\n"
                 "ចំណាំ៖ រូបមន្តតាមផ្ទះនីមួយៗអាចប្រើគ្រឿងខុសគ្នាបន្តិច។"
             ),
             parse_mode="HTML",
@@ -333,7 +337,8 @@ class KhmerFoodBot:
             self.api.call(
                 "sendMessage",
                 chat_id=chat_id,
-                text="សូមចុច /start ដើម្បីជ្រើសបន្លែ និងរកមុខម្ហូបសម្រាប់ថ្ងៃនេះ។",
+                text="👉 <b>សូមចុច /start ដើម្បីជ្រើសបន្លែ និងរកមុខម្ហូបសម្រាប់ថ្ងៃនេះ។</b>",
+                parse_mode="HTML",
             )
 
 
