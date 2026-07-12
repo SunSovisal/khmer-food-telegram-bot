@@ -85,6 +85,15 @@ DISHES = (
     Dish("prahok_ktiss", "ប្រហុកខ្ទិះ", "Prahok ktiss", ("pork",), ("eggplant", "cucumber", "long_bean"), "ជ្រលក់", "ប្រហុកខ្ទិះសាច់ជ្រូកចិញ្ច្រាំ ញ៉ាំផ្ទាប់បន្លែ។"),
     Dish("pork_mushroom", "សាច់ជ្រូកឆាផ្សិត", "Pork and mushroom stir-fry", ("pork",), ("mushroom",), "ឆា", "សាច់ជ្រូកឆាជាមួយផ្សិត និងខ្ទឹម។"),
     Dish("pork_cauliflower", "សាច់ជ្រូកឆាផ្កាខាត់ណា", "Pork and cauliflower stir-fry", ("pork",), ("cauliflower", "carrot"), "ឆា", "សាច់ជ្រូកឆាផ្កាខាត់ណា និងការ៉ុត។"),
+    Dish(
+    "pork_minced_winter_melon",
+    "ឆាត្រឡាចសាច់ជ្រូកចិញ្ច្រាំ",
+    "Stir-fried winter melon with minced pork",
+    ("pork",),
+    ("winter_melon",),
+    "ឆា",
+    "ត្រឡាចឆាជាមួយសាច់ជ្រូកចិញ្ច្រាំ និងខ្ទឹមស។",
+),
     # Beef dishes
     Dish("beef_lok_lak", "ឡុកឡាក់សាច់គោ", "Beef lok lak", ("beef",), ("lettuce", "tomato", "cucumber"), "ឆា", "សាច់គោឡុកឡាក់ ញ៉ាំជាមួយប៉េងប៉ោះ ត្រសក់ និងទឹកម្រេច។"),
     Dish("machu_kroeung_beef", "សម្លម្ជូរគ្រឿងសាច់គោ", "Sour kroeung beef soup", ("beef",), ("water_spinach", "eggplant", "long_bean"), "សម្ល", "សម្លជូរគ្រឿងខ្មែរជាមួយសាច់គោ និងបន្លែ។"),
